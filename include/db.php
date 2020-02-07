@@ -3,6 +3,6 @@
     if(mysqli_connect_error($conn)){
         echo "connection error". mysqli_error();
     }else{
-        echo "Connection Good";
+        // echo "Connection Good";
     }
 ?>
