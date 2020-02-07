@@ -41,8 +41,8 @@
                     <td>$<?php echo number_format( $row['price']); ?></td>
                     <td><?php echo number_format( $row['qty']); ?></td>
                     <td>
-                        <a href="" class="btn btn-sm btn-light"><i class="fa fa-th-list"></i></a>
-                        <a href="edit.php" class="btn btn-sm btn-info"><i class="fa fa-edit"></i></a>
+                        <a href="show.php?show=<?php echo $row['id']; ?>" class="btn btn-sm btn-light"><i class="fa fa-th-list"></i></a>
+                        <a href="edit.php?edit=<?php echo $row['id']; ?>" class="btn btn-sm btn-info"><i class="fa fa-edit"></i></a>
                         <a href="" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
                     </td>
                 </tr>
