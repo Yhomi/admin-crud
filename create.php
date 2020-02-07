@@ -1,9 +1,12 @@
 <?php include "include/header.php" ?>
-<?php require "include/db.php"; ?>
+<?php 
+require "include/db.php";
+    
+?>
 <div class="container">
     <h1 class="text-center">Create page</h1>
     <div class="d-flex justify-content-center">
-        <form enctype="multipart/">
+        <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>" enctype="multipart/form-data">
             <div class="form-group">
                 <label>Name</label>
                 <input type="text" name="name" class="form-control ">
