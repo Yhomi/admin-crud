@@ -61,7 +61,7 @@ $result=mysqli_query($conn,$sql);
 ?>
 <?php while ($row=mysqli_fetch_assoc($result)): ?>
 <div>
-   <img src="uploads/<?php echo $row['image']; ?>" class="image">
+   <img src="uploads/<?php echo $row['image']; ?>" class="img-fluid img-thumbnail float-left" height="100px" width="200px">
 </div>
 <?php endwhile ?>
     
