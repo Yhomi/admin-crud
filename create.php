@@ -89,7 +89,7 @@ $msgClass="";
                 </div>
                 <div class="form-group col-md-4">
                         <label class="col-form-label">Quantity</label>
-                        <input type="text" name="qty" class="form-control">
+                        <input type="number" name="qty" class="form-control">
                 </div>
                 <div class="form-group col-md-4">
                     <label class="col-form-label">Upload Image</label>
