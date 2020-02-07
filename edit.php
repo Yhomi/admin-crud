@@ -1,5 +1,5 @@
-<?php include "inc/header.php" ?>
+<?php include "include/header.php" ?>
 <div class="container">
     <h1>Edit Page</h1>
 </div>
-<?php include "inc/footer.php" ?>
+<?php include "include/footer.php" ?>
