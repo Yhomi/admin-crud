@@ -38,14 +38,15 @@ $msgClass="";
                             $fileNewName=uniqid('',true).".".$file_ActualExt;
                             $fileDestination='uploads/'.$fileNewName;
                             if(move_uploaded_file($file_tmp,$fileDestination)){
-                                $sql="INSERT INTO crud_table(barcode,name,price,qty,image,description) VALUES(?,?,?,?,?,?)";
-                                $stmt=$conn->prepare($sql);
-                                $stmt->bind_param('sssiss',$barcode,$name,$price,$qty,$fileNewName,$description);
-                                if($stmt->execute()){
-                                    $msg="Product Added";
-                                    $msgClass="alert-success";
-                                    header("Location:index.php");
-                                }
+                                // $sql="UPDATE crud_table(barcode,name,price,qty,image,description) VALUES(?,?,?,?,?,?)";
+                                // $stmt=$conn->prepare($sql);
+                                // $stmt->bind_param('sssiss',$barcode,$name,$price,$qty,$fileNewName,$description);
+                                // if($stmt->execute()){
+                                //     $msg="Product Added";
+                                //     $msgClass="alert-success";
+                                //     header("Location:index.php");
+                                // }
+
                             }
                             
                         }
@@ -56,13 +57,20 @@ $msgClass="";
         
 
     }
+    if(isset($_GET['edit'])){
+        $id=$_GET['edit'];
+        $sql="SELECT * FROM crud_table WHERE id=$id";
+        $result=mysqli_query($conn,$sql);
+        $row=mysqli_fetch_assoc($result);
+       
+    }
     
 ?>
 <div class="container">
     <h1 class="text-center">Edit page</h1>
     <div class="card border-danger">
         <div class="card-header bg-danger text-white">
-            <strong><i class="fa fa-plus"></i>Update Product</strong>
+            <strong><i class="fa fa-plus"></i> Update Product</strong>
         </div>
         <div class="card-body">
             <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>" enctype="multipart/form-data">
@@ -75,31 +83,31 @@ $msgClass="";
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label class="col-form-label">Name</label>
-                    <input type="text" name="pname" class="form-control ">
+                    <input type="text" name="pname" class="form-control" value=<?php echo $row['name']; ?>>
                 </div>
                 <div class="form-group col-md-6">
                     <label class="col-form-label">Price</label>
-                    <input type="text" name="price" class="form-control">
+                    <input type="text" name="price" class="form-control" value=<?php echo $row['price']; ?>>
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-4">
                         <label class="col-form-label">Barcode</label>
-                        <input type="text" name="barcode" class="form-control">
+                        <input type="text" name="barcode" class="form-control" value=<?php echo $row['barcode']; ?>>
                 </div>
                 <div class="form-group col-md-4">
                         <label class="col-form-label">Quantity</label>
-                        <input type="number" name="qty" class="form-control">
+                        <input type="number" name="qty" class="form-control" value=<?php echo $row['qty']; ?>>
                 </div>
                 <div class="form-group col-md-4">
                     <label class="col-form-label">Upload Image</label>
-                    <input type="file" name="img" class="form-control">
+                    <input type="file" name="img" class="form-control" value=<?php echo $row['image']; ?>>
                 </div>
                 
             </div>
             <div class="form-group">
                     <label>Description</label>
-                    <textarea class="form-control" name="descrip"rows="5"> </textarea>
+                    <textarea class="form-control" name="descrip"rows="5"><?php echo $row['description']; ?> </textarea>
                 </div>
                 
                 <div class="form-group">
