@@ -1,4 +1,6 @@
 <?php
+$conn=mysqli_connect('localhost','root','','imgupld');
+
 if(isset($_POST['submit'])){
     // $file=$_FILES['img'];
     $file_name=$_FILES['img']['name'];
@@ -17,8 +19,13 @@ if(isset($_POST['submit'])){
         }else{
             $fileNameNew=uniqid('',true).'.'.$file_Actualext;
             $fileDestination='uploads/'.$fileNameNew;
-            move_uploaded_file($file_tmp,$fileDestination);
-            echo "success";
+            if(move_uploaded_file($file_tmp,$fileDestination)){
+                $sql="INSERT INTO image(image) VALUE('$fileNameNew')";
+                mysqli_query($conn,$sql);
+                echo 'image upload successfully';
+            }
+            
+           
 
         }
     }
@@ -48,6 +55,15 @@ if(isset($_POST['submit'])){
             </div>
     </form>
 </div>
+<?php
+$sql="SELECT * FROM image";
+$result=mysqli_query($conn,$sql);
+?>
+<?php while ($row=mysqli_fetch_assoc($result)): ?>
+<div>
+   <img src="uploads/<?php echo $row['image']; ?>" class="image">
+</div>
+<?php endwhile ?>
     
 </body>
 </html>
