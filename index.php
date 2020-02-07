@@ -1,6 +1,8 @@
 
 <?php 
-    require "include/db.php"
+    require "include/db.php";
+    $sql="SELECT * FROM crud_table";
+    
 ?>
 <?php include "include/header.php" ?>
 <div class="container">
