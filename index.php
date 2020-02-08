@@ -1,15 +1,24 @@
 
 <?php 
     require "include/db.php";
+   
+    session_start();
     
     
 ?>
 <?php include "include/header.php" ?>
 <div class="container">
-    <h1>Hello World</h1>
-    <div class="card border-danger">
+    <?php if(isset($_SESSION['msg'])): ?>
+                    <div class="alert <?php echo $_SESSION['msgClass']; ?> alert-dismissible mt-2">
+                                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                <strong><?php echo $_SESSION['msg']; ?> </strong>
+                                <?php unset($_SESSION['msg']); ?>
+                    </div>
+                <?php endif; ?>
+    <div class="card border-danger mt-5">
         <div class="card-header bg-danger text-white">
             <strong><i class="fa fa-database"></i> Products</strong>
+            
         </div>
     </div>
     <div class="card-body">
@@ -43,7 +52,7 @@
                     <td>
                         <a href="show.php?show=<?php echo $row['id']; ?>" class="btn btn-sm btn-light"><i class="fa fa-th-list"></i></a>
                         <a href="edit.php?edit=<?php echo $row['id']; ?>" class="btn btn-sm btn-info"><i class="fa fa-edit"></i></a>
-                        <a href="" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
+                        <a href="delete.php?delete=<?php echo $row['id']; ?>" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
                     </td>
                 </tr>
             <?php endwhile; ?>

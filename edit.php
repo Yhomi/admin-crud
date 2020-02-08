@@ -114,7 +114,7 @@ if(isset($_GET['edit'])){
                 <div class="form-group">
                     <input type="hidden" name="update_id" value="<?php echo $row['id']; ?>">
                     <button type="submit" name="update" class="btn btn-primary"><i class="fa fa-check-circle"></i> Update Products</button>
-                    <a href="index.php" class="btn btn-secondary my-2"><i class="fa fas-arrow"></i><<<< Go Back</a>
+                    <a href="index.php" class="btn btn-secondary btn pull-right"><i class="fa fas-arrow"></i><<<< Go Back</a>
                 </div>
                 
             </form>
