@@ -3,8 +3,19 @@
 require "include/db.php";
 $msg='';
 $msgClass="";
-    if(isset($_POST['submit'])){
+if(isset($_GET['edit'])){
+    $id=$_GET['edit'];
+    $sql="SELECT * FROM crud_table WHERE id=$id";
+    $result=mysqli_query($conn,$sql);
+    $row=mysqli_fetch_assoc($result);
+   
+}
+
+    if(isset($_POST['update'])){
+        $update_id=$_POST['update_id'];
+        
         $name=htmlentities($_POST['pname']);
+        
         $price=htmlentities($_POST['price']);
         $barcode=htmlentities($_POST['barcode']);
         $qty=htmlentities($_POST['qty']);
@@ -38,15 +49,11 @@ $msgClass="";
                             $fileNewName=uniqid('',true).".".$file_ActualExt;
                             $fileDestination='uploads/'.$fileNewName;
                             if(move_uploaded_file($file_tmp,$fileDestination)){
-                                // $sql="UPDATE crud_table(barcode,name,price,qty,image,description) VALUES(?,?,?,?,?,?)";
-                                // $stmt=$conn->prepare($sql);
-                                // $stmt->bind_param('sssiss',$barcode,$name,$price,$qty,$fileNewName,$description);
-                                // if($stmt->execute()){
-                                //     $msg="Product Added";
-                                //     $msgClass="alert-success";
-                                //     header("Location:index.php");
-                                // }
-
+                                $sql="UPDATE crud_table SET barcode='$barcode',name='$name',price='$price',qty='$qty',image='$fileNewName',description='$description' WHERE id='$update_id'";
+                                mysqli_query($conn,$sql);
+                                $msg="Product Updated";
+                                $msgClass="alert-success";
+                                header("Location:index.php");
                             }
                             
                         }
@@ -57,13 +64,7 @@ $msgClass="";
         
 
     }
-    if(isset($_GET['edit'])){
-        $id=$_GET['edit'];
-        $sql="SELECT * FROM crud_table WHERE id=$id";
-        $result=mysqli_query($conn,$sql);
-        $row=mysqli_fetch_assoc($result);
-       
-    }
+    
     
 ?>
 <div class="container">
@@ -101,7 +102,7 @@ $msgClass="";
                 </div>
                 <div class="form-group col-md-4">
                     <label class="col-form-label">Upload Image</label>
-                    <input type="file" name="img" class="form-control" value=<?php echo $row['image']; ?>>
+                    <input type="file" name="img" class="form-control">
                 </div>
                 
             </div>
@@ -111,10 +112,14 @@ $msgClass="";
                 </div>
                 
                 <div class="form-group">
-                    <button type="submit" name="submit" class="btn btn-primary"><i class="fa fa-check-circle"></i> Add Products</button>
+                    <input type="hidden" name="update_id" value="<?php echo $row['id']; ?>">
+                    <button type="submit" name="update" class="btn btn-primary"><i class="fa fa-check-circle"></i> Update Products</button>
+                    <a href="index.php" class="btn btn-secondary my-2"><i class="fa fas-arrow"></i><<<< Go Back</a>
                 </div>
+                
             </form>
         </div>
+        
         
     </div>
 </div>

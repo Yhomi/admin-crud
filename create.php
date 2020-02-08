@@ -106,6 +106,7 @@ $msgClass="";
                     <button type="submit" name="submit" class="btn btn-primary"><i class="fa fa-check-circle"></i> Add Products</button>
                 </div>
             </form>
+            <a href="index.php" class="btn btn-secondary"><i class="fa fas-arrow"></i><<<< Go Back</a>
         </div>
         
     </div>

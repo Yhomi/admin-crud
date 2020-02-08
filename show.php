@@ -12,7 +12,6 @@ require "include/db.php";
 <div class="container">
     <h1>Show Page</h1>
     <div class="card border-danger">
-        <a href="index.php" class="btn btn-secondary">Back</a>
         <div class="card-header bg-danger text-white">
             <strong><i class="fa fa-database"></i> Show Product</strong>
         </div>
